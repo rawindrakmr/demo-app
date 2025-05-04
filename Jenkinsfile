@@ -12,7 +12,8 @@ pipeline {
                 script {
                     echo "Cloning repository from main branch"
                     sh """
-                    git clone -b main https://github.com/Vi0076/demo-app.git
+                    git clone https://github.com/rawindrakmr/demo-app.git
+                    git checkout main
                     git branch
                     """
                 }
