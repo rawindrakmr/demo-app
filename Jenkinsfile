@@ -17,9 +17,14 @@ pipeline {
             steps {
                 script {
                     echo "Starting Docker build..."
-                    dockerImage = docker.build("${DOCKER_IMAGE}:${BUILD_NUMBER}")
-                    echo "Docker image built: ${dockerImage.imageName()}"
-                }
+                    try {
+                        dockerImage = docker.build("${DOCKER_IMAGE}:${BUILD_NUMBER}")
+                        echo "Docker build successful."
+                    } catch (err) {
+                        echo "Docker build failed: ${err}"
+                        error("Stopping pipeline due to build error.")
+                    }
+                        }
             }
         }
 
