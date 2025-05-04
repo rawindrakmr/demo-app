@@ -9,14 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    echo "Cloning repository from main branch"
-                    sh """
-                    git clone https://github.com/rawindrakmr/demo-app.git
-                    git checkout main
-                    git branch
-                    """
-                }
+                git branch: 'main', url: 'https://github.com/rawindrakmr/demo-app.git'
             }
         }
 
